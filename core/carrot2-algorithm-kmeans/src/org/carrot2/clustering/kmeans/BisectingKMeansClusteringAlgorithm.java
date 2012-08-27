@@ -36,8 +36,9 @@ import org.carrot2.core.attribute.Processing;
 import org.carrot2.text.analysis.ITokenizer;
 import org.carrot2.text.preprocessing.LabelFormatter;
 import org.carrot2.text.preprocessing.PreprocessingContext;
-import org.carrot2.text.preprocessing.pipeline.BasicPreprocessingPipeline;
 import org.carrot2.text.preprocessing.pipeline.IPreprocessingPipeline;
+import org.carrot2.text.preprocessing.pipeline.IPreprocessingPipeline.ContextRequired;
+import org.carrot2.text.preprocessing.pipeline.PreprocessingPipelineImpl;
 import org.carrot2.text.vsm.ReducedVectorSpaceModelContext;
 import org.carrot2.text.vsm.TermDocumentMatrixBuilder;
 import org.carrot2.text.vsm.TermDocumentMatrixReducer;
@@ -163,7 +164,7 @@ public class BisectingKMeansClusteringAlgorithm extends ProcessingComponentBase 
     @Attribute
     @Internal
     @ImplementingClasses(classes = {}, strict = false)
-    public IPreprocessingPipeline preprocessingPipeline = new BasicPreprocessingPipeline();
+    public IPreprocessingPipeline preprocessingPipeline = new PreprocessingPipelineImpl();
 
     /**
      * Term-document matrix builder for the algorithm, contains bindable attributes.
@@ -185,7 +186,7 @@ public class BisectingKMeansClusteringAlgorithm extends ProcessingComponentBase 
     {
         // Preprocessing of documents
         final PreprocessingContext preprocessingContext = preprocessingPipeline
-            .preprocess(documents, null, LanguageCode.ENGLISH);
+            .preprocess(documents, null, LanguageCode.ENGLISH, ContextRequired.SIMPLE);
 
         // Add trivial AllLabels so that we can reuse the common TD matrix builder
         final int [] stemsMfow = preprocessingContext.allStems.mostFrequentOriginalWordIndex;
