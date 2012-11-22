@@ -1,5 +1,5 @@
 body, table {
-	font-size: 11px;
+	font-size: 12px;
 	font-family: Tahoma, Arial, Helvetica, sans-serif;
 	margin: 0;
     overflow-y: auto;
@@ -8,9 +8,9 @@ body, table {
 	
 div.cl, div.status {
 	color: white;
-	font-weight: bold;
-	background-color: #5588BE;
-	border-bottom: 1px solid #303030;
+	font-weight: normal;
+	background-color: #303030;
+	border-bottom: 1px dotted #5588BE ;
 	padding-bottom: 4px;
 	padding-top: 4px;
 	padding-left: 2px;
